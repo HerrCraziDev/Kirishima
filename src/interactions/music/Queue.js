@@ -20,11 +20,11 @@ class Queue extends KongouInteraction {
         const queue = dispatcher.queue.length > 9 ? dispatcher.queue.slice(0, 9) : dispatcher.queue;
         const embed = new MessageEmbed()
             .setColor(this.client.color)
-            .setTitle('Now Playing')
+            .setTitle('▶️ Now Playing')
             .setThumbnail(`https://img.youtube.com/vi/${dispatcher.current.info.identifier}/default.jpg`)
             .setDescription(`[${dispatcher.current.info.title}](${dispatcher.current.info.uri}) [${KongouDispatcher.humanizeTime(dispatcher.current.info.length)}]`)
             .setFooter(`• ${dispatcher.queue.length} total songs in queue`);
-        if (queue.length) embed.addField('Up Next', queue.map((track, index) => `**${index + 1}.)** \`${track.info.title}\``).join('\n'));
+        if (queue.length) embed.addField('⏩ Up Next', queue.map((track, index) => `**${index + 1} 〉** __${track.info.title}__ • ${track.info.author}`).join('\n'));
         await interaction.reply({ embeds: [ embed ] });
     }
 }

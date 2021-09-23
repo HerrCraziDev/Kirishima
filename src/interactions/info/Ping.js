@@ -11,7 +11,7 @@ class Ping extends KongouInteraction {
 
     async run({ interaction }) {
         const message = await interaction.deferReply({ fetchReply: true });
-        await interaction.editReply(`Panpakapan! Took \`${Math.round(message.createdTimestamp - interaction.createdTimestamp)}ms\``);
+        await interaction.editReply(`<:kannawave:705431761483726962> Panpakapan! Took \`${Math.round(message.createdTimestamp - interaction.createdTimestamp)}ms\``);
     }
 }
 module.exports = Ping;

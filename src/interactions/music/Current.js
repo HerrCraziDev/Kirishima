@@ -3,7 +3,10 @@ const KongouInteraction = require('../../abstract/KongouInteraction.js');
 const KongouDispatcher = require('../../modules/KongouDispatcher.js');
 const { MessageEmbed } = require('discord.js');
 
+const barSize = 25;
+
 class Current extends KongouInteraction {
+
     get name() {
         return 'current';
     }
@@ -17,7 +20,7 @@ class Current extends KongouInteraction {
     }
 
     async run({ interaction, dispatcher }) {
-        let current = dispatcher.current.info;
+        const current = dispatcher.current.info;
 
         const embed = new MessageEmbed()
             .setColor(this.client.color)
@@ -25,7 +28,7 @@ class Current extends KongouInteraction {
             .setThumbnail(`https://img.youtube.com/vi/${current.identifier}/default.jpg`)
             .setDescription(
                 `**[${current.title}](${current.uri})** [${KongouDispatcher.humanizeTime(current.length)}]\n` +
-                `\`${KongouDispatcher.humanizeTime(current.position)}\` \`${('█'.repeat(current.position / current.length * 15)).padEnd(15, ' ')}\` \`${KongouDispatcher.humanizeTime(current.length)}\``
+                `\`${KongouDispatcher.humanizeTime(dispatcher.player.position)}\` \`${('█'.repeat(dispatcher.player.position / current.length * barSize)).padEnd(barSize, ' ')}\` \`${KongouDispatcher.humanizeTime(current.length)}\``
             )
             .setFooter(`${this.client.user.username} • 🔊 ${dispatcher.channel.name}`, this.client.user.displayAvatarURL());
         await interaction.reply({ embeds: [embed] });

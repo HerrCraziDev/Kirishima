@@ -1,5 +1,5 @@
 const { isMaster } = require('cluster');
-const { dev } = require('../../slash-reloader-config.json');
+const { dev } = require('../../config.json');
 
 class KongouLogger {
     get id() {

@@ -53,7 +53,30 @@ class Play extends KongouInteraction {
             dispatcher?.play();
             return;
         }
-        const search = await node.rest.resolve(query, 'youtube');
+        let source = query.split(':', 2)[0];
+        switch (source) {
+            case 'soundcloud':
+            case 'sc':
+                source = 'soundcloud';
+                break;
+            
+            case 'spotify':
+                return interaction.editReply('Can\'t play Spotify tracks yet, sorry!');
+            
+            case 'local':
+            case 'localhost':
+            case 'lc':
+            case 'media':
+                source = 'local';
+                break;
+            
+            case 'youtube':
+            case 'yt':
+            default:
+                source = 'youtube';
+                break;
+        }
+        const search = await node.rest.resolve(query, source);
         if (!search?.tracks.length)
             return interaction.editReply('Teitoku, I didn\'t find any song on the query you provided!');
         const track = search.tracks.shift();

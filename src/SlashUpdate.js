@@ -1,6 +1,7 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { readdirSync } = require('fs');
+const { extname } = require('path');
 const { token } = require('../config.json');
 const { dev, clientId, guildId } = require('../slash-reloader-config');
 console.log('• Loading the commands to refresh');
@@ -10,7 +11,7 @@ const commands = [];
 for (const directory of readdirSync(`${__dirname}/interactions`, { withFileTypes: true })) {
     if (!directory.isDirectory()) continue;
     for (const command of readdirSync(`${__dirname}/interactions/${directory.name}`, { withFileTypes: true })) {
-        if (!command.isFile()) continue;
+        if (!command.isFile() || extname(command.name) != '.js') continue;
         const Interaction = require(`${__dirname}/interactions/${directory.name}/${command.name}`);
         commands.push(new Interaction({}).interactionData);
     }

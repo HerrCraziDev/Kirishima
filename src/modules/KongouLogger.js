@@ -1,4 +1,5 @@
 const { isMaster } = require('cluster');
+const { dev } = require('../../config.json');
 
 class KongouLogger {
     get id() {
@@ -6,7 +7,7 @@ class KongouLogger {
     }
 
     debug(title, message) {
-        console.log(`[Process ${process.pid}] [Cluster ${this.id}] [${title}] ${message}`);
+        if (dev) console.log(`[Process ${process.pid}] [Cluster ${this.id}] [${title}] ${message}`);
     }
 
     log(title, message) {

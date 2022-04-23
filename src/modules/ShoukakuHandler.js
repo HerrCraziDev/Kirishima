@@ -23,7 +23,7 @@ class ShoukakuHandler extends Shoukaku {
         );
         this.on('debug',
             (name, reason) =>
-                client.logger.log(`Lavalink Node: ${name}`, reason || 'No reason')
+                client.logger.debug(`Lavalink Node: ${name}`, reason || 'No reason')
         );
     }
 }

@@ -1,5 +1,5 @@
 const { Constants, Intents, Util } = require('discord.js');
-const { Azuma } = require('../Azuma');
+const { Azuma } = require('azuma');
 const { join } = require('path');
 const { token } = require('./config.json');
 const { GUILDS, GUILD_MEMBERS, GUILD_BANS, GUILD_VOICE_STATES, GUILD_MESSAGES, GUILD_MESSAGE_REACTIONS } = Intents.FLAGS;

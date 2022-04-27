@@ -1,5 +1,5 @@
 const KongouEvent = require('../abstract/KongouEvent.js');
-const { dev } = require('../../config.json');
+const { dev, statuses } = require('../../config.json');
 
 class Ready extends KongouEvent {
     get name() {
@@ -20,11 +20,6 @@ class Ready extends KongouEvent {
 
             if (!this.interval) {
                 await this.client.user.setActivity('It\'s the English-born returnee, Kongou! Nice to meet you!');
-                const statuses =  [
-                    'Admiral! You\'ve got mail! Love Letters aren\'t allowed!',
-                    'Always got to make time for tea-time!',
-                    'Burning... Love!'
-                ];
                 this.interval = setInterval(() => {
                     const current = statuses.shift();
                     this.client.user.setActivity(current);

@@ -1,5 +1,6 @@
 const KongouEvent = require('../abstract/KongouEvent.js');
-const { dev, statuses } = require('../../config.json');
+const { dev } = require('../../config.json');
+const { statuses } = require('../../config.json');
 
 class Ready extends KongouEvent {
     get name() {

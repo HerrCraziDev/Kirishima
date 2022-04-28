@@ -39,8 +39,7 @@
     "kurasuta": "^3.0.1",
     "petitio": "^1.4.0",
     "shoukaku": "^2.1.0",
-    "utf-8-validate": "^5.0.5",
-    "uuid": "^8.3.2"
+    "utf-8-validate": "^5.0.5"
   },
   "devDependencies": {
     "eslint": "^8.1.0"

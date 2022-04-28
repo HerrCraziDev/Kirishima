@@ -1,8 +1,6 @@
-const uuid = require('uuid');
 
 class KongouInteraction {
     constructor(client) {
-        this.uid = uuid.v4();
         this.client = client;
         this.category = null;
         if (this.constructor === KongouInteraction) throw new TypeError('Abstract class "KongouInteraction" cannot be instantiated directly.'); 

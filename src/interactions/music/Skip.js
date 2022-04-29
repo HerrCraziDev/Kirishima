@@ -6,7 +6,7 @@ class Skip extends KongouInteraction {
     }
 
     get description() {
-        return 'Skips the currently playing song';
+        return 'Skips the currently playing song!';
     }
 
     get playerCheck() {

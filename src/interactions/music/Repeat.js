@@ -7,7 +7,7 @@ class Repeat extends KongouInteraction {
     }
 
     get description() {
-        return 'Sets the repeat mode of this playback';
+        return 'Sets the repeat mode of this playback!';
     }
 
     get options() {

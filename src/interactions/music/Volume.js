@@ -7,7 +7,7 @@ class Volume extends KongouInteraction {
     }
 
     get description() {
-        return 'Sets the volume of this playback.';
+        return 'Sets the volume of this playback!';
     }
     
     get options() {

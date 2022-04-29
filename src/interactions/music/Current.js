@@ -12,7 +12,7 @@ class Current extends KongouInteraction {
     }
 
     get description() {
-        return 'Shows the current playing track!';
+        return 'Shows the currently playing track!';
     }
 
     get playerCheck() {
@@ -30,7 +30,7 @@ class Current extends KongouInteraction {
                 `**[${current.title}](${current.uri})** [${KongouDispatcher.humanizeTime(current.length)}]\n` +
                 `\`${KongouDispatcher.humanizeTime(dispatcher.player.position)}\` \`${('█'.repeat(dispatcher.player.position / current.length * barSize)).padEnd(barSize, ' ')}\` \`${KongouDispatcher.humanizeTime(current.length)}\``
             )
-            .setFooter(`${this.client.user.username} • 🔊 ${dispatcher.channel.name}`, this.client.user.displayAvatarURL());
+            .setFooter(`${this.client.user.username} • ${dispatcher.queue.length} total songs in queue • 🔊 ${dispatcher.channel.name}`, this.client.user.displayAvatarURL());
         await interaction.reply({ embeds: [embed] });
     }
 }

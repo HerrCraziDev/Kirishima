@@ -20,7 +20,7 @@ class Remove extends KongouInteraction {
     }
 
     get description() {
-        return 'Removes a track from the current queue';
+        return 'Removes a track from the current queue!';
     }
 
     get playerCheck() {
@@ -36,7 +36,7 @@ class Remove extends KongouInteraction {
             let removed = dispatcher.queue.splice(track - 1, 1)[0];
             return interaction.reply(`Removed track **${track}** - \`${removed.info.title}\` from queue.`);
         } else {
-            return interaction.reply(`No track n°${track} found, please make sure you entered a valid track number (check \`/queue\`), baka!`);
+            return interaction.reply(`No track #${track} found, please make sure you entered a valid track number (check \`/queue\`, baka!)`);
         }
     }
 }

@@ -6,5 +6,6 @@
 		"Admiral! You've got mail! Love Letters aren't allowed!",
 		"Always got to make time for tea-time!",
 		"Burning... Love!"
-	]
+	],
+	"statusTimer": 30000
 }

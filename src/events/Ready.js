@@ -1,6 +1,5 @@
 const KongouEvent = require('../abstract/KongouEvent.js');
-const { dev } = require('../../config.json');
-const { statuses } = require('../../config.json');
+const { dev, statuses, statusTimer } = require('../../config.json');
 
 class Ready extends KongouEvent {
     get name() {
@@ -25,7 +24,7 @@ class Ready extends KongouEvent {
                     const current = statuses.shift();
                     this.client.user.setActivity(current);
                     statuses.push(current);
-                }, 300000);
+                }, statusTimer);
             }
         }
     }

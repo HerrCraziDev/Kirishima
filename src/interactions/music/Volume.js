@@ -14,7 +14,7 @@ class Volume extends KongouInteraction {
         return [{
             name: 'value',
             type: ApplicationCommandOptionType.Integer,
-            description: 'The new volume you want me to set to [1-200]',
+            description: 'The new volume you want to set [1-200]',
             required: true,
         }];
     }

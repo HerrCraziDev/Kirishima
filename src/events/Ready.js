@@ -16,10 +16,11 @@ class Ready extends KongouEvent {
             await this.client.user.setActivity('I\'m under maintenance, please stand by.');
             await this.client.user.setStatus('dnd');
         } else {
-            await this.client.user.setStatus('online');
+            await this.client.user.setStatus('online'); 
+            statuses.sort((a, b) => (Math.random() - 0.5));
 
             if (!this.interval) {
-                await this.client.user.setActivity('It\'s the English-born returnee, Kongou! Nice to meet you!');
+                await this.client.user.setActivity("Aloha, it's me, your favorite retarded shipgirl! Nice to meet you!");
                 this.interval = setInterval(() => {
                     const current = statuses.shift();
                     this.client.user.setActivity(current);

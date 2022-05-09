@@ -16,13 +16,31 @@ class Parrot extends KongouInteraction {
             type: ApplicationCommandOptionType.String,
             description: "The message to repeat",
             required: false
+        },
+        {
+            name: 'in',
+            type: ApplicationCommandOptionType.Channel,
+            description: "Channel to send to, current one by default",
+            required: false
         }]
     }
 
     async run({ interaction }) {
+        await interaction.deferReply({ephemeral: true});
+
         const message = interaction.options.getString('message');
-        if (message) interaction.reply(message);
-        else interaction.reply("Baka !");
+        const channel = interaction.options.getChannel('in') ?? interaction.channel;
+
+        if (!channel?.viewable || !channel?.permissionsFor(this.client.user).has('SEND_MESSAGES')) {
+            interaction.editReply(`I can't write messages to <#${channel.id}>, baka !`);
+            return;
+        }
+
+        if (message) {
+            this.client.logger.debug(this.constructor.name, message);
+            await channel.send(message);
+            interaction.editReply("Sent !");
+        } else interaction.editReply("Baka !");
     }
 }
 module.exports = Parrot;

@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType } = require('discord-api-types');
+const { ApplicationCommandOptionType } = require('discord-api-types/v9');
 const KongouInteraction = require('../../abstract/KongouInteraction.js');
 
 class Parrot extends KongouInteraction {

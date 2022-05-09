@@ -103,7 +103,7 @@ class InteractionHandler extends EventEmitter {
             if (command.playerCheck?.channel && dispatcher.player.connection.channelId !== interaction.member.voice.channelId) 
                 return interaction.reply('Teitoku, you are not in the same voice channel I\'m currently connected to!');         
             // execute le commandz
-            this.client.logger.log(this.constructor.name, `Executing command ${command.name} (@${command.uid})`);
+            this.client.logger.log(this.constructor.name, `Executing command ${command.name}`);
             await command.run({ interaction, dispatcher });
         } catch (error) {
             const embed = new MessageEmbed()

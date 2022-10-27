@@ -12,38 +12,42 @@ class KongouDispatcher {
         this.stopped = false;
 
         let _notifiedOnce = false;
+        let _errorHandler = data => {
+            if (data instanceof Error || data instanceof Object) this.client.logger.error(data);
+            this.queue.length = 0;
+            this.destroy();
+        };
 
-
-        this.player.on('start', () => {
-            
-            if (this.repeat === 'one' || this.queue.length < 1) {
-               if (_notifiedOnce) return;
-               else _notifiedOnce = true; 
-            }
-
-            const embed = new MessageEmbed()
-                .setColor(0xff0000)
-                .setAuthor(
-                    `${this.current.info.title} [${KongouDispatcher.humanizeTime(this.current.info.length)}]`, 
-                    `https://img.youtube.com/vi/${this.current.info.identifier}/default.jpg`, 
-                    this.current.info.uri
-                );
-            this.channel
-                .send({ embeds: [ embed ] })
-                .catch(() => null);
-        });
-        this.player.on('end', () => {
-            if (this.repeat === 'one') this.queue.unshift(this.current);
-            if (this.repeat === 'all') this.queue.push(this.current);
-            this.play();
-        });
-        for (const event of ['closed', 'error']) {
-            this.player.on(event, data => {
-                if (data instanceof Error || data instanceof Object) this.client.logger.error(data);
-                this.queue.length = 0;
-                this.destroy();
-            });
-        }
+        this.player
+            .on('start', () => {
+                if (this.repeat === 'one') {
+                    if (_notifiedOnce) return;
+                    else _notifiedOnce = true; 
+                }
+                else if (this.repeat === 'all' || this.repeat === 'off') {
+                    _notifiedOnce = false;
+                }
+                const embed = new MessageEmbed()
+                    .setColor(this.client.color)
+                    .setTitle('Now Playing')
+                    .setDescription(`${this.current.info.title} [${KongouDispatcher.humanizeTime(this.current.info.length)}]`)
+                    .setURL(this.current.info.uri);
+                this.channel
+                    .send({ embeds: [ embed ] })
+                    .catch(() => null);
+            })
+            .on('end', () => {
+                if (this.repeat === 'one') this.queue.unshift(this.current);
+                if (this.repeat === 'all') this.queue.push(this.current);
+                this.play();
+            })
+            .on('stuck', () => {
+                if (this.repeat === 'one') this.queue.unshift(this.current);
+                if (this.repeat === 'all') this.queue.push(this.current);
+                this.play();
+            })
+            .on('closed', _errorHandler)
+            .on('error', _errorHandler);
     }
 
     static humanizeTime(ms) {
@@ -61,7 +65,7 @@ class KongouDispatcher {
         this.current = this.queue.shift();
         this.player
             .setVolume(0.3)
-            .playTrack(this.current.track);
+            .playTrack({ track: this.current.track });
     }
     
     destroy(reason) {

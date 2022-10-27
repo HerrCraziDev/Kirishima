@@ -21,10 +21,10 @@ class Stats extends KongouInteraction {
 
     async run({ interaction }) {
         const [ guilds, channels, memory, players ] = await Promise.all([
-            this.client.shard.broadcastEval('this.guilds.cache.size'),
-            this.client.shard.broadcastEval('this.channels.cache.size'),
-            this.client.shard.broadcastEval('process.memoryUsage()'),
-            this.client.shard.broadcastEval('this.queue.size')
+            this.client.shard.broadcastEval(client => client.guilds.cache.size),
+            this.client.shard.broadcastEval(client => client.channels.cache.size),
+            this.client.shard.broadcastEval(() => process.memoryUsage()),
+            this.client.shard.broadcastEval(client => client.queue.size)
         ]);
         const embed = new MessageEmbed()
             .setColor(this.client.color)

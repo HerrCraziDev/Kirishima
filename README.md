@@ -15,11 +15,13 @@ A pretty bare Discord music bot base (forked from @Deivu/Kongou).
 > `(c) Kancolle for Kirishima`.
 
 
-> A simple bot to show how I use [Shoukaku](https://github.com/Deivu/Shoukaku) & [Azuma](https://github.com/Deivu/Azuma) on your Discord.JS bot
+> A simple bot to show how I use [Shoukaku](https://github.com/Deivu/Shoukaku) and [Indomitable](https://github.com/Deivu/Indomitable) on your Discord.JS bot
 
-> PS. this supports sharding out of box due to `Azuma`
+> This supports sharding out of box since it uses Indomitable by default
 
 ### Before you start 
+
+> This uses Shoukaku V3 which is a TS rewrite
 
 > Make sure you have Node >=16.6.0 installed on your system as this uses Discord.JS v13
 

@@ -1,5 +1,4 @@
 const { Client, LimitedCollection } = require('discord.js');
-const { Cheshire } = require('cheshire');
 const { Collection } = require('@discordjs/collection');
 const { token } = require('../config.json');
 const KongouLogger = require('./modules/KongouLogger.js');
@@ -22,7 +21,7 @@ class Kongou extends Client {
                 case 'PresenceManager':
                 case 'ThreadManager': return new LimitedCollection({ maxSize: 0 });
                 // TLRU cache, Lifetime 30 minutes
-                case 'MessageManager': return new Cheshire({ lifetime: 1e+6, lru: false });
+                case 'MessageManager': return new LimitedCollection({ maxSize: 1 });
                 // Default cache
                 default: return new Collection();
             }

@@ -1,7 +1,7 @@
 {
   "name": "kongou",
-  "version": "2.0.0",
-  "description": "An example bot for Using both Azuma & Shoukaku",
+  "version": "3.0.0",
+  "description": "An example bot on how I implement Shoukaku in a basic level",
   "scripts": {
     "start": "node index.js",
     "slash": "node src/SlashUpdate.js"
@@ -28,20 +28,18 @@
   },
   "homepage": "https://github.com/Deivu/Kongou#readme",
   "dependencies": {
-    "@discordjs/collection": "^0.3.2",
-    "@discordjs/rest": "^0.1.0-canary.0",
-    "@godaddy/terminus": "^4.9.0",
-    "azuma": "^2.1.2",
-    "bufferutil": "^4.0.5",
-    "cheshire": "github:Deivu/Cheshire#2.0.2",
-    "discord-api-types": "^0.24.0",
-    "discord.js": "^13.3.1",
-    "kurasuta": "^3.0.1",
-    "petitio": "^1.4.0",
-    "shoukaku": "^2.1.0",
-    "utf-8-validate": "^5.0.5"
+    "@discordjs/collection": "^0.7.0",
+    "@discordjs/rest": "^0.5.0",
+    "bufferutil": "^4.0.6",
+    "discord-api-types": "^0.34.0",
+    "discord.js": "^13.8.0",
+    "indomitable": "github:Deivu/Indomitable#e0dcefcf209ef7d94d0ba1c08bedc689d9fb5ebc",
+    "msgpackr": "^1.6.1",
+    "shoukaku": "^3.1.0",
+    "utf-8-validate": "^5.0.9",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "eslint": "^8.1.0"
+    "eslint": "^8.16.0"
   }
 }

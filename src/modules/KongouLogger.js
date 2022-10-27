@@ -3,7 +3,7 @@ const { dev } = require('../../config.json');
 
 class KongouLogger {
     get id() {
-        return isMaster ? 'Parent' : process.env.CLUSTER_ID;
+        return isMaster ? 'Parent' : process.env.CLUSTER;
     }
 
     debug(title, message) {
@@ -11,7 +11,7 @@ class KongouLogger {
     }
 
     log(title, message) {
-        console.log(`[Process ${process.pid}] [Cluster ${this.id}] [${title}] ${message}`);
+        console.log(`[Process ${process.pid}] [Cluster ${this.id}] [${title}] ${message.trim()}`);
     }
 
     error(error) {

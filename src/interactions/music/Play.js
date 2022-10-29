@@ -57,8 +57,9 @@ class Play extends KongouInteraction {
         let source = query.split(':', 2)[0];
         switch (source) {
             case 'soundcloud':
+            case 'scsearch':
             case 'sc':
-                source = 'soundcloud';
+                source = 'scsearch';
                 break;
             
             case 'spotify':
@@ -73,11 +74,12 @@ class Play extends KongouInteraction {
             
             case 'youtube':
             case 'yt':
+            case 'ytsearch':
             default:
-                source = 'youtube';
+                source = 'ytsearch';
                 break;
         }
-        const search = await node.rest.resolve(query, source);
+        const search = await node.rest.resolve(`${source}:${query}`);
         if (!search?.tracks.length)
             return interaction.editReply('Teitoku, I didn\'t find any song on the query you provided!');
         const track = search.tracks.shift();

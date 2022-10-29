@@ -7,5 +7,6 @@
 		"Always got to make time for tea-time!",
 		"Burning... Love!"
 	],
-	"statusTimer": 30000
+	"statusTimer": 30000,
+	"leaveTimeout": 30000
 }

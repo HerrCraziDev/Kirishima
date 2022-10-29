@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+const config = require('../../config.json');
 
 class KongouDispatcher {
     constructor({ client, guild, channel, player }) {
@@ -10,6 +11,7 @@ class KongouDispatcher {
         this.repeat = 'off';
         this.current = null;
         this.stopped = false;
+        this.leaveTimeout = null;
 
         let _notifiedOnce = false;
         let _errorHandler = data => {
@@ -61,7 +63,10 @@ class KongouDispatcher {
     }
 
     play() {
-        if (!this.exists || !this.queue.length) return this.destroy();
+        if (!this.exists || !this.queue.length) {
+            this.leaveTimeout = setTimeout( () => this.destroy("No more songs in queue"), config.leaveTimeout);
+            return;
+        } 
         this.current = this.queue.shift();
         this.player
             .setVolume(0.3)
